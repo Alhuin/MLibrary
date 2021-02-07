@@ -4,6 +4,7 @@ from MLibrary.utils import euclidean_distance
 
 
 class KNN:
+
     def __init__(self, k=3):
         """ k = number of neighbours to consider """
         self.k = k

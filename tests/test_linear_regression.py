@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import parent_import
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
-from MLibrary.liear_regression import LinearRegression
+from MLibrary.linear_regression import LinearRegression
 
 
 def mse(y_true, y_predicted):

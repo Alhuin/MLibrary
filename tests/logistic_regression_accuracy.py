@@ -1,7 +1,7 @@
 import parent_import
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
-from MLibrary.logistic_regression import LogisticRegression
+from MLibrary.regressions import LogisticRegression
 from MLibrary.utils import accuracy
 
 

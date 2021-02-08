@@ -1,74 +1,42 @@
 import parent_import
 import numpy as np
+import pytest
 from MLibrary.utils import euclidean_distance, sigmoid, accuracy, mse
 
 
-def test_euclidean_distance_pos_a_b():
-    assert euclidean_distance(1, 3) == 2
+@pytest.mark.parametrize(
+    'params, expected', [
+        ([1, 3], 2),
+        ([3, 1], 2),
+        ([-3, -2], 1),
+        ([-2, -3], 1),
+        ([0, 0], 0)
+    ]
+)
+def test_euclidean_distance(params, expected):
+    assert euclidean_distance(params[0], params[1]) == expected
 
 
-def test_euclidean_distance_pos_b_a():
-    assert euclidean_distance(3, 1) == 2
+@pytest.mark.parametrize(
+    'param, expected', [
+        (5, 0.9933071490757153),
+        (-5, 0.0066928509242848554),
+        (0, 0.5)
+    ]
+)
+def test_sigmoid(param, expected):
+    assert sigmoid(param) == expected
 
 
-def test_euclidean_distance_neg_a_b():
-    assert euclidean_distance(-3, -2) == 1
-
-
-def test_euclidean_distance_neg_b_a():
-    assert euclidean_distance(-2, -3) == 1
-
-
-def test_euclidean_distance_neg_a_pos_b():
-    assert euclidean_distance(-3, 1) == 4
-
-
-def test_euclidean_distance_pos_a_neg_b():
-    assert euclidean_distance(3, -2) == 5
-
-
-def test_euclidean_distance_null_a_neg_b():
-    assert euclidean_distance(0, -3) == 3
-
-
-def test_euclidean_distance_null_a_pos_b():
-    assert euclidean_distance(0, 5) == 5
-
-
-def test_euclidean_distance_neg_a_null_b():
-    assert euclidean_distance(-2, 0) == 2
-
-
-def test_euclidean_distance_pos_a_null_b():
-    assert euclidean_distance(6, 0) == 6
-
-
-def test_euclidean_distance_null_a_b():
-    assert euclidean_distance(0, 0) == 0
-
-
-def test_sigmoid_pos():
-    assert sigmoid(5) == 0.9933071490757153
-
-
-def test_sigmoid_neg():
-    assert sigmoid(-5) == 0.0066928509242848554
-
-
-def test_sigmoid_nul():
-    assert sigmoid(0) == 0.5
-
-
-def test_accuracy_full():
-    assert accuracy(np.array([1, 1]), np.array([1, 1])) == 1.0
-
-
-def test_accuracy_half():
-    assert accuracy(np.array([1, 0]), np.array([1, 1])) == 0.5
-
-
-def test_accuracy_nul():
-    assert accuracy(np.array([0, 0]), np.array([1, 1])) == 0.0
+@pytest.mark.parametrize(
+    'params, expected', [
+        ([[1, 1], [1, 1]], 1.0),
+        ([[1, 0], [1, 1]], 0.5),
+        ([[0, 0], [1, 1]], 0.0)
+    ]
+)
+def test_accuracy(params, expected):
+    assert accuracy(np.array(params[0]), np.array(params[1])) == expected
 
 
 def test_mse_error():
@@ -76,4 +44,4 @@ def test_mse_error():
 
 
 def test_mse_no_error():
-    assert mse(np.array([1, 1, 1, 1, ]), np.array([1, 1, 1, 1 ])) == 0.0
+    assert mse(np.array([1, 1, 1, 1, ]), np.array([1, 1, 1, 1])) == 0.0

@@ -7,8 +7,8 @@ setup(
     description='Machine Learning Python Library',
     author='Alhuin',
     license='MIT',
-    install_requires=[],
-    setup_requires=['pytest-runner', 'numpy'],
+    install_requires=['numpy'],
+    setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     test_suite='tests',
 )

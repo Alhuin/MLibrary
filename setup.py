@@ -8,7 +8,7 @@ setup(
     author='Alhuin',
     license='MIT',
     install_requires=[],
-    setup_requires=['pytest-runner'],
+    setup_requires=['pytest-runner', 'numpy'],
     tests_require=['pytest'],
     test_suite='tests',
 )

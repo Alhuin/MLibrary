@@ -39,9 +39,11 @@ def test_accuracy(params, expected):
     assert accuracy(np.array(params[0]), np.array(params[1])) == expected
 
 
-def test_mse_error():
-    assert mse(np.array([0.5, 0.6, 0.7, 0.8]), np.array([0.5, 0.7, 0.6, 1.0])) == 0.014999999999999993
-
-
-def test_mse_no_error():
-    assert mse(np.array([1, 1, 1, 1, ]), np.array([1, 1, 1, 1])) == 0.0
+@pytest.mark.parametrize(
+    'params, expected', [
+        ([[0.5, 0.6, 0.7, 0.8], [0.5, 0.7, 0.6, 1.0]], 0.014999999999999993),
+        ([[1, 1, 1, 1], [1, 1, 1, 1]], 0.0),
+    ]
+)
+def test_mse(params, expected):
+    assert mse(np.array(params[0]), np.array(params[1])) == expected
